@@ -1,0 +1,13 @@
+	#api {
+		width: 328px;
+		height: 328px;
+		border: 1px solid;
+		display: table;
+	}
+	
+	.pecas {
+		width: 80px;
+		height: 80px;
+		border: 1px solid;
+		float: left;
+	}
