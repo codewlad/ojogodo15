@@ -82,8 +82,13 @@
 	]
 	
 	var posicao_vazia, imagem, posicao;
+	var sequencia = [12, 5, 8, 130, 44];
 	
 	const apiEl = document.querySelector('#api');
+	
+	function vitoria(element, index, array) {
+		return element.imagem === element.posicao;
+	}	
 	
 	function mover() {
 		var temp = document.querySelector(`.pecas${imagem}`);
@@ -92,7 +97,6 @@
 		
 		temp = document.querySelector('.pecas16');
 		temp.setAttribute('class', `pecas pecas${imagem}`);
-		temp.setAttribute('style', `background-image: url(img/${imagem}.png)`);
 		
 		temp = document.querySelector('.mudando');
 		temp.setAttribute('class', 'pecas pecas16');
@@ -189,7 +193,6 @@
 		for (cont = 1; cont <= elementos.length; cont++) {
 			let pecaEl = document.createElement('div');
 			pecaEl.setAttribute('class', `pecas pecas${elementos[cont-1].imagem}`);
-			pecaEl.setAttribute('style', `background-image: url(img/${elementos[cont-1].imagem}.png)`);
 			apiEl.appendChild(pecaEl);
 			if(elementos[cont-1].imagem === elementos.length) {
 				posicao_vazia = cont;
@@ -197,6 +200,9 @@
 			}
 		}
 		definirPecas();
+		if (elementos.every(vitoria) === true) {
+			alert('Parabéns, voce ganhou!');
+		}
 	}
 
 	function embaralhar() {
@@ -216,7 +222,6 @@
 			arr[p] = tmp;
 			let pecaEl = document.createElement('div');
 			pecaEl.setAttribute('class', `pecas pecas${tmp}`);
-			pecaEl.setAttribute('style', `background-image: url(img/${tmp}.png)`);
 			apiEl.appendChild(pecaEl);
 			elementos[cont].id = 'img' + arr[p];
 			elementos[cont].posicao = cont +1;

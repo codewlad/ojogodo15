@@ -3,11 +3,89 @@
 		height: 328px;
 		border: 1px solid;
 		display: table;
+		float: left;
+	}
+	
+	#original{
+		width: 320px;
+		height: 320px;
+		border: 5px solid;
+		float: left;
+		background-repeat: no-repeat;
+		background-image: url(../img/bg.jpg);
+		margin-left: 20px;
 	}
 	
 	.pecas {
 		width: 80px;
 		height: 80px;
 		border: 1px solid;
-		float: left;
+		float: left;				
+		background-repeat: no-repeat;
+		background-image: url(../img/bg.jpg);
+	}
+	
+	.pecas1 {				
+		background-position: 0% 0%;
+	}
+	
+	.pecas2 {
+		background-position: 33% 0%;
+	}
+	
+	.pecas3 {
+		background-position: 66% 0%;
+	}
+	
+	.pecas4 {
+		background-position: 99% 0%;
+	}
+	
+	.pecas5 {
+		background-position: 0% 33%;
+	}
+	
+	.pecas6 {
+		background-position: 33% 33%;
+	}
+	
+	.pecas7 {
+		background-position: 66% 33%;
+	}
+	
+	.pecas8 {
+		background-position: 99% 33%;
+	}
+	
+	.pecas9 {
+		background-position: 0% 66%;
+	}
+	
+	.pecas10 {
+		background-position: 33% 66%;
+	}
+	
+	.pecas11 {
+		background-position: 66% 66%;
+	}
+	
+	.pecas12 {
+		background-position: 99% 66%;
+	}
+	
+	.pecas13 {	
+		background-position: 0% 99%;
+	}
+	
+	.pecas14 {
+		background-position: 33% 99%;
+	}
+	
+	.pecas15 {
+		background-position: 66% 99%;
+	}
+	
+	.pecas16 {
+		background-position: 99% 99%;
+		background-image: url('');
 	}
