@@ -1,19 +1,23 @@
 	#api {
-		width: 328px;
+		width: 329px;
 		height: 328px;
-		border: 1px solid;
 		display: table;
-		float: left;
+		margin: 10px auto;
 	}
 	
 	#original{
-		width: 320px;
-		height: 320px;
-		border: 5px solid;
-		float: left;
+		width: 324px;
+		height: 324px;
+		border: 2px solid;
 		background-repeat: no-repeat;
-		background-image: url(../img/bg.jpg);
-		margin-left: 20px;
+		background-size: cover;
+		margin: 10px auto;
+		display: block;
+	}
+
+	body {
+		font-family: monospace;
+		text-align: center;
 	}
 	
 	.pecas {
@@ -22,7 +26,6 @@
 		border: 1px solid;
 		float: left;				
 		background-repeat: no-repeat;
-		background-image: url(../img/bg.jpg);
 	}
 	
 	.pecas1 {				

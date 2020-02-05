@@ -81,26 +81,66 @@
 		},
 	]
 	
-	var posicao_vazia, imagem, posicao;
-	var sequencia = [12, 5, 8, 130, 44];
+	var elementos2, posicao_vazia, imagem, posicao;
 	
 	const apiEl = document.querySelector('#api');
+	const originalEl = document.querySelector('#original');
+	const btn_num = document.querySelector('#mostrar_num');
+	const btn_img  = document.querySelector('#mostrar_img');
+	var fundo = 'bg_1.jpg';
 	
-	function vitoria(element, index, array) {
+	btn_num.onclick = function () {
+		fundo = 'bg_2.jpg';
+		render();
+	}
+	
+	btn_img.onclick = function () {
+		fundo = 'bg_1.jpg';
+		render();
+	}
+	
+	function vitoriaImpossivel(value) {
+	  return value.posicao !== 14 && value.posicao !== 15;	  
+	}
+	
+	function checarVitoria(element, index, array) {
 		return element.imagem === element.posicao;
-	}	
+	}
 	
-	function mover() {
-		var temp = document.querySelector(`.pecas${imagem}`);
-		temp.setAttribute('class', 'mudando');
-		temp.setAttribute('style', 'background-image:');
+	function render() {
+		apiEl.innerHTML = '';
 		
-		temp = document.querySelector('.pecas16');
-		temp.setAttribute('class', `pecas pecas${imagem}`);
+		for (var cont = 1; cont <= elementos.length; cont++) {
+			let pecaEl = document.createElement('div');
+			pecaEl.setAttribute('class', `pecas pecas${elementos[cont-1].imagem}`);
+			pecaEl.setAttribute('style', `background-image: url(img/${fundo})`);
+			originalEl.setAttribute('style', `background-image: url(img/${fundo})`);
+			apiEl.appendChild(pecaEl);
+			if(elementos[cont-1].imagem === elementos.length) {
+				posicao_vazia = cont;
+				pecaEl.setAttribute('style', 'background-image:');
+			}
+		}
 		
-		temp = document.querySelector('.mudando');
-		temp.setAttribute('class', 'pecas pecas16');
-		
+		if (elementos2.every(checarVitoria) === true && elementos[13].imagem === 15 && elementos[14].imagem === 14) {
+			elementos[13].id = 'img14';
+			elementos[13].posicao = 14;
+			elementos[13].imagem = 14;
+			
+			elementos[14].id = 'img15';
+			elementos[14].posicao = 15;
+			elementos[14].imagem = 15;
+			
+			render();
+			
+		} else if (elementos.every(checarVitoria) === true) {
+			setTimeout(function(){ alert('Parabéns, voce ganhou!'); }, 50);
+		} else {
+			definirPecas();
+		}
+	}
+	
+	function mover() {		
 		elementos[posicao-1].id = 'img16';
 		elementos[posicao-1].posicao = posicao;
 		elementos[posicao-1].imagem = 16;
@@ -108,6 +148,8 @@
 		elementos[posicao_vazia-1].id = 'img' + imagem;
 		elementos[posicao_vazia-1].posicao = posicao_vazia;
 		elementos[posicao_vazia-1].imagem = imagem;
+		
+		elementos2 = elementos.filter(vitoriaImpossivel);
 				
 		render();
 	}
@@ -187,23 +229,6 @@
 		document.querySelector('.pecas15').onclick = () => descobrirPosicoes(15);
 		document.querySelector('.pecas16').onclick = () => descobrirPosicoes(16);
 	}
-	
-	function render(){
-		apiEl.innerHTML = '';
-		for (cont = 1; cont <= elementos.length; cont++) {
-			let pecaEl = document.createElement('div');
-			pecaEl.setAttribute('class', `pecas pecas${elementos[cont-1].imagem}`);
-			apiEl.appendChild(pecaEl);
-			if(elementos[cont-1].imagem === elementos.length) {
-				posicao_vazia = cont;
-				pecaEl.setAttribute('style', 'background-image:');
-			}
-		}
-		definirPecas();
-		if (elementos.every(vitoria) === true) {
-			alert('Parabéns, voce ganhou!');
-		}
-	}
 
 	function embaralhar() {
 		var maximo = elementos.length;
@@ -213,7 +238,7 @@
 		   arr[i] = i + 1;
 		}
 		
-		var p, n, tmp, cont=0;
+		var p, n, tmp, cont = 0;
 		
 		for (p = arr.length; p;) {
 			n = Math.random() * p-- | 0;
@@ -222,6 +247,7 @@
 			arr[p] = tmp;
 			let pecaEl = document.createElement('div');
 			pecaEl.setAttribute('class', `pecas pecas${tmp}`);
+			pecaEl.setAttribute('style', `background-image: url(img/${fundo})`);
 			apiEl.appendChild(pecaEl);
 			elementos[cont].id = 'img' + arr[p];
 			elementos[cont].posicao = cont +1;
@@ -232,6 +258,8 @@
 			}
 			cont++;
 		}
+		originalEl.setAttribute('style', `background-image: url(img/${fundo})`);
+		elementos2 = elementos.filter(vitoriaImpossivel);
 		definirPecas();		
 	}
 	
